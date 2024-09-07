@@ -21,13 +21,11 @@ class AuthController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
+            return response()->json($validator->errors(), 400);}
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            'password' => Hash::make($request->password),]);
         $token = JWTAuth::fromUser($user);
         return response()->json(compact('user', 'token'), 201);
     }
@@ -37,14 +35,12 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
+            'password' => 'required|string|min:6',]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
         if (! $token = Auth::attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+            return response()->json(['error' => 'Unauthorized'], 401);}
         return $this->createNewToken($token);
     }
 
@@ -67,8 +63,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'string|max:255',
             'email' => 'string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'string|min:6|confirmed',
-        ]);
+            'password' => 'string|min:6|confirmed',]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
@@ -84,6 +79,9 @@ class AuthController extends Controller
     // Logout
     public function logout()
     {
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized'], 401);}
         Auth::logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
