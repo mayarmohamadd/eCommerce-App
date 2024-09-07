@@ -17,23 +17,23 @@ class FeatureSeeder extends Seeder
         $features = [
             [
                 'name' => 'Beauty',
-                'image' => asset('Feature/beauty.png'),
+                'image' => 'Feature/beauty.png',
             ],
             [
                 'name' => 'Fashion',
-                'image' => asset('Feature/fashion.png'),
+                'image' =>'Feature/fashion.png',
             ],
             [
                 'name' => 'Kids',
-                'image' => asset('Feature/kids.png'),
+                'image' => 'Feature/kids.png',
             ],
             [
                 'name' => 'Mens',
-                'image' => asset('Feature/mens.png'),
+                'image' => 'Feature/mens.png',
             ],
             [
                 'name' => 'Womens',
-                'image' => asset('Feature/womens.png'),
+                'image' =>'Feature/womens.png',
             ],
         ];
 

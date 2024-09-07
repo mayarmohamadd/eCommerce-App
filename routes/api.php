@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Api\FeatureController;
+use App\Http\Controllers\Api\ProductController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -20,3 +21,6 @@ Route::put('profile/update', [AuthController::class, 'updateProfile'])->middlewa
 
 
 Route::get('features', [FeatureController::class, 'index'])->middleware('auth:api');
+Route::get('products', [ProductController::class, 'index'])->middleware('auth:api');
+Route::post('products-by-feature', [ProductController::class, 'getProductsByFeature'])->middleware('auth:api');
+
