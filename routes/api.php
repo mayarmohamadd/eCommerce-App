@@ -23,4 +23,8 @@ Route::put('profile/update', [AuthController::class, 'updateProfile'])->middlewa
 Route::get('features', [FeatureController::class, 'index'])->middleware('auth:api');
 Route::get('products', [ProductController::class, 'index'])->middleware('auth:api');
 Route::post('products-by-feature', [ProductController::class, 'getProductsByFeature'])->middleware('auth:api');
+Route::post('product-by-name', [ProductController::class, 'getProductByName'])->middleware('auth:api');
+Route::post('add-to-cart', [ProductController::class, 'addToCart'])->middleware('auth:api');
+Route::get('checkout', [ProductController::class, 'checkout'])->middleware('auth:api');
+
 
